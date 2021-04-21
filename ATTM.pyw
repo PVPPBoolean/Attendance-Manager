@@ -327,7 +327,7 @@ def send_mail():
 			msg = MIMEMultipart()
 			msg['From'] = 'PVPPGRPBOOLEAN'
 			msg['To'] = item[1]
-			msg['subject'] = 'Just a Test2'
+			msg['subject'] = 'Attendance Report'
 			# Message = message.create_msg(item[0], config.LECTURE_NAME, config.TEACHER_NAME)
 
 			# Message = txtmessage()
