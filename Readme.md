@@ -37,7 +37,7 @@ git clone https://github.com/PVPPBoolean/Attendance-Manager.git
 
 #### Install all the requirements.
  ```sh
-pip install -r requiremnets.txt
+pip install -r requirements.txt
 ```
 
 #### Fill your details in config.py file as shown below
@@ -72,7 +72,7 @@ PASSWORD = "Example_Password"
 #### Now run ATTM.pyw
 
 - Click on settings menu and click Edit Database
-- File dialog will open and uploadthe *.xls file
+- File dialog will open and upload the *.xls file
 
 ```diff 
  Now you can start using Attendance Manager
