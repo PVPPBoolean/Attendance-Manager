@@ -14,6 +14,7 @@ from tkinter import filedialog # Filedialog
 from  tkinter import END
 from tkinter import scrolledtext
 
+import inputDatabase as inpdb
 
 # import ntpaths
 try:
@@ -523,6 +524,7 @@ settings_menu =tk.Menu(main_menu, tearoff=False, bg=frame_bg, fg=frame_fg)
 main_menu.add_cascade(label='Settings', menu = settings_menu)
 settings_menu.add_radiobutton(label="Dark Mode", command=lambda:[dark_mode(mode.get())], variable=mode, value=1)
 settings_menu.add_radiobutton(label="Light Mode", command=lambda:[dark_mode(mode.get())], variable=mode, value=0)
+settings_menu.add_command(label='Edit Database', command = inpdb.xls_to_sql)
 
 # Social menu
 social_menu =tk.Menu(main_menu, tearoff=False, bg=frame_bg, fg=frame_fg)
