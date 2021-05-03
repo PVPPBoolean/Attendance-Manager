@@ -228,7 +228,7 @@ def present_students():
 	items = c.fetchall()
 
 	for item in items:
-		database_list.append(item[0])
+		database_list.append((item[0]).lower())
 
 	# present list genration
 	global present_list
@@ -247,7 +247,7 @@ def present_students():
 		# Present_label.place(relx=0.044, rely=0.064, relwidth=0.913, relheight=0.06)
 		i = 1
 		for name in present_list:
-			Present_student_listbox.insert(END,str(i)+" . "+name)
+			Present_student_listbox.insert(END,str(i)+" . "+name.title())
 			# print(name)
 			i+=1
 		Present_student_listbox.insert(END, "Total number of present students: "+str(len(present_list)))
@@ -266,7 +266,7 @@ def absent_students():
 	items = c.fetchall()
 
 	for item in items:
-		database_list.append(item[0])
+		database_list.append((item[0]).lower())
 
 	# absent list generation
 	global absent_list
@@ -285,7 +285,7 @@ def absent_students():
 		# Absent_label.place(relx=0.044, rely=0.064, relwidth=0.913, relheight=0.06)
 		i = 1
 		for name in absent_list:
-			Absent_student_listbox.insert(END,str(i)+" . "+name)
+			Absent_student_listbox.insert(END,str(i)+" . "+name.title())
 			# print(name)
 			i+=1
 		Absent_student_listbox.insert(END, "Total number of absent students: "+str(len(absent_list)))
@@ -313,10 +313,10 @@ def send_mail():
 		items = c.fetchall()
 
 		for item in items:
-			database_list.append(item[0])
+			database_list.append(item[0].lower())
 		for item in items:
-			database_list1.append((item[0], item[1]))
-
+			database_list1.append(((item[0]).lower(),item[1]))
+		# print(database_list1)
 		absent_list = Diff(database_list, temp_present_list)
 
 		for item in database_list1:
@@ -327,7 +327,7 @@ def send_mail():
 			# create msg
 			msg = MIMEMultipart()
 			msg['From'] = 'PVPPGRPBOOLEAN'
-			msg['To'] = item[1]
+			msg['To'] = item[1].capitalize()
 			msg['subject'] = 'Attendance Report'
 			# Message = message.create_msg(item[0], config.LECTURE_NAME, config.TEACHER_NAME)
 
@@ -384,14 +384,17 @@ def upload_file():
 
 		for items in temp_list:
 			for item in items:
-				temp_present_list.append(item)
+				temp_present_list.append(item.lower())
+		# print (temp_present_list)
 
 		temp_list.clear()
 
 		global date
 		raw_date = (temp_present_list[0:4])[0]
+		# print(raw_date)
 		match = re.search(r'\d{4}-\d{2}-\d{2}', raw_date)
 		date = (datetime.strptime(match.group(), '%Y-%m-%d').date()).strftime("%d-%b")
+		# print(date)
 		
 		# print(date)
 
@@ -421,7 +424,8 @@ def update():
 		tk.messagebox.showinfo("File not found", "Hence, showing the previous records", icon = "info")
 
 	for student in present_list:
-		df.loc[df["Name"] == student, date] = "Present"
+		df.loc[df["Name"] == (student).title(), date] = "Present"
+		# print(student.capitalize())
 	clear_treeview()
 	Register_treeview["column"] = list(df.columns)
 	Register_treeview["show"] = "headings"
